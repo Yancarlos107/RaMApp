@@ -41,10 +41,8 @@ class AppRoutes {
     };
   }
 
-  // Método para navegar a una ruta con argumentos
   static void navigateTo(BuildContext context, String routeName,
       {Object? arguments}) {
-    print("Navegando a $routeName con argumentos: $arguments");
     Navigator.pushNamed(context, routeName, arguments: arguments);
   }
 }

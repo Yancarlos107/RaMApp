@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import '../repositories/character_repository.dart';
-import '../entities/character.dart';
 import '../exceptions/server_exception.dart';
 
 class GetFavorites {
@@ -8,7 +7,7 @@ class GetFavorites {
 
   GetFavorites(this.repository);
 
-  Future<Either<ServerException, List<Character>>> call() async {
+  Future<Either<ServerException, List<int>>> call() async {
     try {
       final favorites = await repository.getFavorites();
       return Right(favorites);

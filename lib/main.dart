@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'domain/injection/injection.dart';
-import 'domain/usecases/search_locations.dart';
 import 'presentation/blocs/character_bloc/character_bloc.dart';
 import 'presentation/blocs/episode_bloc/episode_bloc.dart';
 import 'presentation/blocs/location_bloc/location_bloc.dart';
-import 'presentation/pages/character_detail_page.dart';
 import 'presentation/routes/app_routes.dart';
 
 void main() async {

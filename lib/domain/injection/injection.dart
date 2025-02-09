@@ -1,3 +1,4 @@
+import 'package:digital_test/domain/usecases/validate_favorite.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/datasources/local_data_source.dart';
@@ -8,12 +9,11 @@ import '../../data/repositories/location_repository_impl.dart';
 import '../../presentation/blocs/character_bloc/character_bloc.dart';
 import '../../presentation/blocs/episode_bloc/episode_bloc.dart';
 import '../../presentation/blocs/location_bloc/location_bloc.dart';
-import '../usecases/delete_favorite.dart';
 import '../usecases/get_characters.dart';
 import '../usecases/get_episodes.dart';
 import '../usecases/get_favorites.dart';
 import '../usecases/get_locations.dart';
-import '../usecases/save_favorites.dart';
+import '../usecases/toggle_favorites.dart';
 import '../usecases/search_characters.dart';
 import '../usecases/search_episodes.dart';
 import '../usecases/search_locations.dart';
@@ -43,9 +43,9 @@ class DependencyInjection {
   // UseCases para Personajes
   static final getCharacters = GetCharacters(characterRepository);
   static final searchCharacters = SearchCharacters(characterRepository);
-  static final saveFavorite = SaveFavorite(characterRepository);
+  static final toggleFavorites = ToggleFavorite(characterRepository);
   static final getFavorites = GetFavorites(characterRepository);
-  static final deleteFavorite = DeleteFavorite(characterRepository);
+  static final isFavorite = IsFavorite(characterRepository);
 
   // UseCases para Ubicaciones
   static final getLocations = GetLocations(locationRepository);
@@ -58,11 +58,11 @@ class DependencyInjection {
   // BLoCs
   static CharacterBloc characterBloc() => CharacterBloc(
         getCharacters: getCharacters,
-        searchCharacters:
-            searchCharacters, /*
-        saveFavorite: saveFavorite,
-        getFavorites: getFavorites,
-        deleteFavorite: deleteFavorite, */
+        searchCharacters: searchCharacters,
+        isFavorite: isFavorite,
+        toggleFavorite:
+            toggleFavorites, /*
+        getFavorites: getFavorites, */
       );
 
   static LocationBloc locationBloc() => LocationBloc(

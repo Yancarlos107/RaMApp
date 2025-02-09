@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import '../../domain/entities/episode.dart';
 import '../../domain/exceptions/server_exception.dart';
 import '../../domain/repositories/episode_repository.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/usecases/get_episodes.dart';
 import '../../../domain/usecases/search_episodes.dart';
-import '../../../domain/entities/episode.dart';
 import 'episode_event.dart';
 import 'episode_state.dart';
 

@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import '../../domain/entities/character.dart';
 import '../../domain/exceptions/server_exception.dart';
 import '../../domain/repositories/character_repository.dart';
@@ -16,10 +15,9 @@ class CharacterRepositoryImpl implements CharacterRepository {
 
   @override
   Future<List<Character>> getCharacters({int page = 1}) async {
-    print("Repositorio: Obteniendo personajes desde remoteDataSource.");
     try {
       final response = await remoteDataSource.getCharacters(page: page);
-      print(response);
+
       return response
           .map((model) => Character(
                 id: model.id,
@@ -30,7 +28,6 @@ class CharacterRepositoryImpl implements CharacterRepository {
               ))
           .toList();
     } catch (e) {
-      print("Repositorio: Error al obtener personajes desde remoteDataSource.");
       throw ServerException("Error al obtener personajes.");
     }
   }
@@ -45,18 +42,18 @@ class CharacterRepositoryImpl implements CharacterRepository {
   }
 
   @override
-  Future<void> saveFavorite(Character character) async {
+  Future<void> saveFavorite(int id) async {
     try {
-      await localDataSource.saveFavorite('favorites', character);
+      await localDataSource.saveFavorite(id);
     } catch (e) {
       throw Exception("Error al guardar el personaje como favorito.");
     }
   }
 
   @override
-  Future<List<Character>> getFavorites() async {
+  Future<List<int>> getFavorites() async {
     try {
-      return await localDataSource.getFavorites('favorites');
+      return await localDataSource.getFavorites();
     } catch (e) {
       throw Exception("Error al obtener los favoritos.");
     }
@@ -65,9 +62,15 @@ class CharacterRepositoryImpl implements CharacterRepository {
   @override
   Future<void> deleteFavorite(int id) async {
     try {
-      await localDataSource.deleteFavorite('favorites', id);
+      await localDataSource.deleteFavorite(id);
     } catch (e) {
       throw Exception("Error al eliminar el personaje de favoritos.");
     }
+  }
+
+  @override
+  Future<bool> isFavorite(int characterId) async {
+    final favorites = await getFavorites();
+    return favorites.contains(characterId);
   }
 }

@@ -1,6 +1,16 @@
-import '../../../domain/entities/character.dart';
-
 abstract class CharacterEvent {}
+
+class CheckIsFavorite extends CharacterEvent {
+  final int characterId;
+
+  CheckIsFavorite(this.characterId);
+}
+
+class ToggleFavorites extends CharacterEvent {
+  final int characterId;
+
+  ToggleFavorites(this.characterId);
+}
 
 class CancelSearch extends CharacterEvent {}
 
@@ -16,10 +26,4 @@ class SearchCharacter extends CharacterEvent {
   final String query;
 
   SearchCharacter(this.query);
-}
-
-class AddToFavorites extends CharacterEvent {
-  final Character character;
-
-  AddToFavorites(this.character);
 }
