@@ -20,7 +20,12 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
         emit(CharacterLoaded(_cachedCharacters));
         return;
       }
+
       if (!_isSearching) {
+        if (event.page == 1) {
+          _cachedCharacters
+              .clear(); // Limpia la caché solo en la primera página
+        }
         emit(CharacterLoading());
 
         final result = await getCharacters.call(page: event.page);
@@ -36,6 +41,24 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
           },
         );
       }
+    });
+
+    on<RefreshCharacters>((event, emit) async {
+      _cachedCharacters.clear(); // Limpia la caché para forzar la recarga
+      emit(CharacterLoading());
+
+      final result = await getCharacters.call(page: 1);
+      result.fold(
+        (failure) => emit(CharacterError()),
+        (characters) {
+          if (characters.isEmpty) {
+            emit(CharacterEmpty());
+          } else {
+            _cachedCharacters.addAll(characters);
+            emit(CharacterLoaded(_cachedCharacters));
+          }
+        },
+      );
     });
 
     on<SearchCharacter>((event, emit) async {

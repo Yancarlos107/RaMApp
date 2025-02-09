@@ -43,7 +43,18 @@ class _CharacterListPageState extends State<CharacterListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Personajes')),
+      appBar: AppBar(
+        title: const Text('Personajes'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () {
+              _currentPage = 1;
+              context.read<CharacterBloc>().add(RefreshCharacters());
+            },
+          ),
+        ],
+      ),
       body: Column(
         children: [
           // SearchBar

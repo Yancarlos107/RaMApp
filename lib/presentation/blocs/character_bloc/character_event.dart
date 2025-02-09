@@ -10,6 +10,8 @@ class FetchCharacters extends CharacterEvent {
   FetchCharacters({this.page = 1});
 }
 
+class RefreshCharacters extends CharacterEvent {}
+
 class SearchCharacter extends CharacterEvent {
   final String query;
 
