@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/episode_bloc/episode_bloc.dart';
+import '../blocs/episode_bloc/episode_event.dart';
+import '../blocs/episode_bloc/episode_state.dart';
 import '../widgets/episode_list_tile.dart';
-import '../widgets/search_bar.dart';
+import '../widgets/search_bar.dart' as searchbar;
 
 class EpisodeListPage extends StatelessWidget {
   const EpisodeListPage({super.key});
@@ -13,9 +15,9 @@ class EpisodeListPage extends StatelessWidget {
       appBar: AppBar(title: const Text('Episodios')),
       body: Column(
         children: [
-          SearchBar(
+          searchbar.SearchBar(
             onSearch: (query) {
-              context.read<EpisodeBloc>().add(SearchEpisodes(query));
+              context.read<EpisodeBloc>().add(SearchEpisode(query));
             },
           ),
           Expanded(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/location_bloc/location_bloc.dart';
+import '../blocs/location_bloc/location_event.dart';
+import '../blocs/location_bloc/location_state.dart';
 import '../widgets/location_list_tile.dart';
-import '../widgets/search_bar.dart';
+import '../widgets/search_bar.dart' as searchbar;
 
 class LocationListPage extends StatelessWidget {
   const LocationListPage({super.key});
@@ -13,7 +15,7 @@ class LocationListPage extends StatelessWidget {
       appBar: AppBar(title: const Text('Ubicaciones')),
       body: Column(
         children: [
-          SearchBar(
+          searchbar.SearchBar(
             onSearch: (query) {
               context.read<LocationBloc>().add(SearchLocation(query));
             },

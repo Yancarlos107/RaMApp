@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/character_bloc/character_bloc.dart';
+import '../blocs/character_bloc/character_event.dart';
+import '../blocs/character_bloc/character_state.dart';
 import '../widgets/character_list_tile.dart';
 import '../widgets/search_bar.dart' as searchbar;
 

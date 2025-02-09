@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../domain/entities/character.dart';
+import '../../domain/entities/episode.dart';
+import '../../domain/entities/location.dart';
 import '../pages/home_page.dart';
 import '../pages/character_list_page.dart';
 import '../pages/character_detail_page.dart';
@@ -21,15 +24,15 @@ class AppRoutes {
   static Map<String, Widget Function(BuildContext)> get routes {
     return {
       home: (context) => const HomePage(),
-      characters: (context) => CharacterListPage(),
+      characters: (context) => const CharacterListPage(),
       characterDetail: (context) => CharacterDetailPage(
             character: ModalRoute.of(context)!.settings.arguments as Character,
           ),
-      locations: (context) => LocationListPage(),
+      locations: (context) => const LocationListPage(),
       locationDetail: (context) => LocationDetailPage(
             location: ModalRoute.of(context)!.settings.arguments as Location,
           ),
-      episodes: (context) => EpisodeListPage(),
+      episodes: (context) => const EpisodeListPage(),
       episodeDetail: (context) => EpisodeDetailPage(
             episode: ModalRoute.of(context)!.settings.arguments as Episode,
           ),
