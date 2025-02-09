@@ -19,6 +19,7 @@ class LocationListPage extends StatelessWidget {
             onSearch: (query) {
               context.read<LocationBloc>().add(SearchLocation(query));
             },
+            onCancel: () {},
           ),
           Expanded(
             child: BlocBuilder<LocationBloc, LocationState>(

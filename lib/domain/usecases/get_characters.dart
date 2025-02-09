@@ -9,10 +9,12 @@ class GetCharacters {
   GetCharacters(this.repository);
 
   Future<Either<ServerException, List<Character>>> call({int page = 1}) async {
+    print("UseCase: Llamando a CharacterRepository.getCharacters().");
     try {
       final characters = await repository.getCharacters(page: page);
       return Right(characters);
     } catch (e) {
+      print("UseCase: Error al obtener personajes desde el repositorio.");
       return Left(ServerException());
     }
   }

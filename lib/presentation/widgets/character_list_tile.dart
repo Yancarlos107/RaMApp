@@ -14,8 +14,16 @@ class CharacterListTile extends StatelessWidget {
       title: Text(character.name),
       subtitle: Text('${character.species} - ${character.status}'),
       onTap: () {
-        AppRoutes.navigateTo(context, AppRoutes.characterDetail,
-            arguments: character);
+        print('Pantalla personaje');
+        print(
+            'Detalles del personaje antes de navegar: ${character.name}, ${character.species}, ${character.status}');
+        if (character != null) {
+          print('los arguemntos no son nulls');
+          Navigator.pushNamed(context, '/character_detail',
+              arguments: character);
+        } else {
+          print('ERROR: Character es nulo antes de navegar.');
+        }
       },
     );
   }

@@ -21,20 +21,22 @@ class AppRoutes {
   static const String episodeDetail = '/episode_detail';
 
   // Mapa de rutas
-  static Map<String, Widget Function(BuildContext)> get routes {
+  static Map<String, Widget Function(BuildContext context, Object? arguments)>
+      get routes {
     return {
-      home: (context) => const HomePage(),
-      characters: (context) => const CharacterListPage(),
-      characterDetail: (context) => CharacterDetailPage(
-            character: ModalRoute.of(context)!.settings.arguments as Character,
-          ),
-      locations: (context) => const LocationListPage(),
-      locationDetail: (context) => LocationDetailPage(
+      home: (context, _) => const HomePage(),
+      characters: (context, _) => const CharacterListPage(),
+      characterDetail: (context, arguments) {
+        final character = arguments as Character?;
+        return CharacterDetailPage(character: character);
+      },
+      locations: (context, _) => const LocationListPage(),
+      locationDetail: (context, arguments) => LocationDetailPage(
             location: ModalRoute.of(context)!.settings.arguments as Location,
           ),
-      episodes: (context) => const EpisodeListPage(),
-      episodeDetail: (context) => EpisodeDetailPage(
-            episode: ModalRoute.of(context)!.settings.arguments as Episode,
+      episodes: (context, _) => const EpisodeListPage(),
+      episodeDetail: (context, arguments) => EpisodeDetailPage(
+            episode: arguments as Episode,
           ),
     };
   }
@@ -42,6 +44,7 @@ class AppRoutes {
   // Método para navegar a una ruta con argumentos
   static void navigateTo(BuildContext context, String routeName,
       {Object? arguments}) {
+    print("Navegando a $routeName con argumentos: $arguments");
     Navigator.pushNamed(context, routeName, arguments: arguments);
   }
 }

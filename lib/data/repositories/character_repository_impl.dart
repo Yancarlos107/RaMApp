@@ -16,10 +16,22 @@ class CharacterRepositoryImpl implements CharacterRepository {
 
   @override
   Future<List<Character>> getCharacters({int page = 1}) async {
+    print("Repositorio: Obteniendo personajes desde remoteDataSource.");
     try {
-      return await remoteDataSource.getCharacters(page: page);
+      final response = await remoteDataSource.getCharacters(page: page);
+      print(response);
+      return response
+          .map((model) => Character(
+                id: model.id,
+                name: model.name,
+                status: model.status,
+                species: model.species,
+                image: model.image,
+              ))
+          .toList();
     } catch (e) {
-      throw ServerException();
+      print("Repositorio: Error al obtener personajes desde remoteDataSource.");
+      throw ServerException("Error al obtener personajes.");
     }
   }
 
@@ -28,7 +40,7 @@ class CharacterRepositoryImpl implements CharacterRepository {
     try {
       return await remoteDataSource.searchCharacters(query);
     } catch (e) {
-      throw ServerException();
+      throw ServerException("Error al buscar personajes.");
     }
   }
 

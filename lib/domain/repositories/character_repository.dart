@@ -1,3 +1,5 @@
+import 'package:digital_test/data/repositories/character_repository_impl.dart';
+
 import '../entities/character.dart';
 
 abstract class CharacterRepository {

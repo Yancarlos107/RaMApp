@@ -5,6 +5,7 @@ import 'domain/usecases/search_locations.dart';
 import 'presentation/blocs/character_bloc/character_bloc.dart';
 import 'presentation/blocs/episode_bloc/episode_bloc.dart';
 import 'presentation/blocs/location_bloc/location_bloc.dart';
+import 'presentation/pages/character_detail_page.dart';
 import 'presentation/routes/app_routes.dart';
 
 void main() async {
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'Rick And Morty',
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -45,7 +47,8 @@ class MyApp extends StatelessWidget {
               final widgetBuilder = routes[settings.name];
               if (widgetBuilder != null) {
                 return MaterialPageRoute(
-                    builder: (context) => widgetBuilder(context));
+                    builder: (context) =>
+                        widgetBuilder(context, settings.arguments));
               }
               return null;
             }));

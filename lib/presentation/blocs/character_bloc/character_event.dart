@@ -2,16 +2,18 @@ import '../../../domain/entities/character.dart';
 
 abstract class CharacterEvent {}
 
+class CancelSearch extends CharacterEvent {}
+
 class FetchCharacters extends CharacterEvent {
   final int page;
 
   FetchCharacters({this.page = 1});
 }
 
-class SearchCharacters extends CharacterEvent {
+class SearchCharacter extends CharacterEvent {
   final String query;
 
-  SearchCharacters(this.query);
+  SearchCharacter(this.query);
 }
 
 class AddToFavorites extends CharacterEvent {

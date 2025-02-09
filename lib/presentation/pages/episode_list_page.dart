@@ -19,6 +19,7 @@ class EpisodeListPage extends StatelessWidget {
             onSearch: (query) {
               context.read<EpisodeBloc>().add(SearchEpisode(query));
             },
+            onCancel: () {},
           ),
           Expanded(
             child: BlocBuilder<EpisodeBloc, EpisodeState>(

@@ -57,9 +57,9 @@ class DependencyInjection {
 
   // BLoCs
   static CharacterBloc characterBloc() => CharacterBloc(
-        getCharacters:
-            getCharacters, /* 
-        searchCharacters: searchCharacters,
+        getCharacters: getCharacters,
+        searchCharacters:
+            searchCharacters, /*
         saveFavorite: saveFavorite,
         getFavorites: getFavorites,
         deleteFavorite: deleteFavorite, */
