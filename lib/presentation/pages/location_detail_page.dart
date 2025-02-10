@@ -9,8 +9,18 @@ class LocationDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black87,
       appBar: AppBar(
-        title: Text(location!.name),
+        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: Colors.black87,
+        title: Text(
+          location!.name,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -20,27 +30,53 @@ class LocationDetailPage extends StatelessWidget {
             Text(
               'Nombre: ${location!.name}',
               style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
             ),
             const SizedBox(height: 8),
             Text(
               'Tipo: ${location!.type}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 8),
-            Text('Dimensión: ${location!.dimension}'),
+            Text(
+              'Dimensión: ${location!.dimension}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             const SizedBox(height: 16),
             const Text(
               'Residentes:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             Expanded(
               child: ListView.builder(
                 itemCount: location!.residents.length,
                 itemBuilder: (context, index) {
+                  final url =
+                      transformRickAndMortyUrl(location!.residents[index]);
                   return ListTile(
-                    title: Text('Residente ${index + 1}'),
+                    leading: CircleAvatar(
+                        maxRadius: 40, backgroundImage: NetworkImage(url)),
+                    title: Text(
+                      'Residente ${index + 1}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
                     subtitle: Text(location!.residents[index]),
                   );
                 },
@@ -51,4 +87,12 @@ class LocationDetailPage extends StatelessWidget {
       ),
     );
   }
+}
+
+String transformRickAndMortyUrl(String url) {
+  if (url.contains('/api/character/')) {
+    String id = url.substring(url.lastIndexOf('/') + 1); // Extrae el ID
+    return 'https://rickandmortyapi.com/api/character/avatar/$id.jpeg';
+  }
+  return url; // Devuelve la misma URL si no coincide el formato
 }

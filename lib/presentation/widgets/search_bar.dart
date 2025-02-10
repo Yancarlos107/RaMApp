@@ -22,14 +22,20 @@ class SearchBar extends StatelessWidget {
             child: TextField(
               controller: controller,
               onSubmitted: onSearch,
-              decoration: const InputDecoration(
-                labelStyle: TextStyle(
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.white, width: 2),
+                    borderRadius: BorderRadius.circular(12)),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.white, width: 2),
+                    borderRadius: BorderRadius.circular(12)),
+                labelStyle: const TextStyle(
                   color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                 ),
-                labelText: 'Buscar personaje',
-                border: OutlineInputBorder(),
+                labelText: 'Buscar',
+                border: const OutlineInputBorder(),
               ),
             ),
           ),
