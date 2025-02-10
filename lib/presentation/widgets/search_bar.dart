@@ -21,6 +21,7 @@ class SearchBar extends StatelessWidget {
           Expanded(
             child: TextField(
               controller: controller,
+              onSubmitted: onSearch,
               decoration: const InputDecoration(
                 labelText: 'Buscar personaje',
                 border: OutlineInputBorder(),
