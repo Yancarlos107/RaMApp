@@ -15,15 +15,3 @@ class CharacterLoaded extends CharacterState {
 class CharacterError extends CharacterState {}
 
 class CharacterEmpty extends CharacterState {}
-
-class FavoriteInitial extends CharacterState {}
-
-class FavoriteLoading extends CharacterState {}
-
-class FavoriteStatus extends CharacterState {
-  final bool isFavorite;
-
-  FavoriteStatus(this.isFavorite);
-}
-
-class FavoriteError extends CharacterState {}

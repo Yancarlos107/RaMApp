@@ -21,6 +21,7 @@ class _CharacterListPageState extends State<CharacterListPage> {
   @override
   void initState() {
     super.initState();
+    print('initsate');
     context.read<CharacterBloc>().add(FetchCharacters(page: _currentPage));
     _scrollController.addListener(_onScroll);
   }

@@ -1,3 +1,4 @@
+import 'package:digital_test/presentation/blocs/favorite_bloc/favorite_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'domain/injection/injection.dart';
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<EpisodeBloc>(
             create: (_) => DependencyInjection.episodeBloc(),
+          ),
+          BlocProvider<FavoriteBloc>(
+            create: (_) => DependencyInjection.favoriteBloc(),
           ),
         ],
         child: MaterialApp(

@@ -1,4 +1,5 @@
 import 'package:digital_test/domain/usecases/validate_favorite.dart';
+import 'package:digital_test/presentation/blocs/favorite_bloc/favorite_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/datasources/local_data_source.dart';
@@ -59,11 +60,10 @@ class DependencyInjection {
   static CharacterBloc characterBloc() => CharacterBloc(
         getCharacters: getCharacters,
         searchCharacters: searchCharacters,
-        isFavorite: isFavorite,
-        toggleFavorite:
-            toggleFavorites, /*
-        getFavorites: getFavorites, */
       );
+
+  static FavoriteBloc favoriteBloc() =>
+      FavoriteBloc(isFavorite: isFavorite, toggleFavorite: toggleFavorites);
 
   static LocationBloc locationBloc() => LocationBloc(
         getLocations: getLocations,
