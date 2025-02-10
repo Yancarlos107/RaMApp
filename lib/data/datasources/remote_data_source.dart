@@ -23,8 +23,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<List<Character>> getCharacters({int page = 1}) async {
-    final response = await dio.get('https://rickandmortyapi.com/api/character',
-        queryParameters: {'page': page});
+    final response = await dio.get(
+      'https://rickandmortyapi.com/api/character',
+      queryParameters: {'page': page},
+    );
     if (response.statusCode == 200) {
       final results = List<Map<String, dynamic>>.from(response.data['results']);
       return results.map((e) => CharacterModel.fromJson(e)).toList();
@@ -35,8 +37,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<List<Character>> searchCharacters(String query) async {
-    final response = await dio.get('https://rickandmortyapi.com/api/character',
-        queryParameters: {'name': query});
+    final response = await dio
+        .get('https://rickandmortyapi.com/api/character', queryParameters: {
+      'name': query, /* 'Autorization': 'Bearer token' */
+    });
     if (response.statusCode == 200) {
       final results = List<Map<String, dynamic>>.from(response.data['results']);
       return results.map((e) => CharacterModel.fromJson(e)).toList();
@@ -48,8 +52,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<List<Episode>> getEpisodes({int page = 1}) async {
     try {
-      final response = await dio.get('https://rickandmortyapi.com/api/episode',
-          queryParameters: {'page': page});
+      final response = await dio
+          .get('https://rickandmortyapi.com/api/episode', queryParameters: {
+        'page': page, /* 'Autorization': 'Bearer token' */
+      });
       if (response.statusCode == 200) {
         final results =
             List<Map<String, dynamic>>.from(response.data['results']);
