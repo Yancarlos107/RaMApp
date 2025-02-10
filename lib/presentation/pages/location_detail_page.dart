@@ -77,7 +77,11 @@ class LocationDetailPage extends StatelessWidget {
                         fontSize: 16,
                       ),
                     ),
-                    subtitle: Text(location!.residents[index]),
+                    subtitle: Text(location!.residents[index],
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        )),
                   );
                 },
               ),

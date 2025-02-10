@@ -9,8 +9,17 @@ class EpisodeListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(episode.name),
-      subtitle: Text('${episode.episodeCode} - ${episode.airDate}'),
+      title: Text(episode.name,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          )),
+      subtitle: Text('${episode.episodeCode} - ${episode.airDate}',
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 15,
+          )),
       onTap: () {
         Navigator.pushNamed(context, '/episode_detail', arguments: episode);
       },
