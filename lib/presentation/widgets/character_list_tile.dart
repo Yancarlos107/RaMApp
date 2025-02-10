@@ -9,9 +9,23 @@ class CharacterListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: CircleAvatar(backgroundImage: NetworkImage(character.image)),
-      title: Text(character.name),
-      subtitle: Text('${character.species} - ${character.status}'),
+      leading: CircleAvatar(
+          maxRadius: 40, backgroundImage: NetworkImage(character.image)),
+      title: Text(
+        character.name,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      subtitle: Text(
+        '${character.species} - ${character.status}',
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 14,
+        ),
+      ),
       onTap: () {
         Navigator.pushNamed(context, '/character_detail', arguments: character);
       },

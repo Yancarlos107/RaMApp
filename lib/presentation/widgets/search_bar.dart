@@ -23,13 +23,21 @@ class SearchBar extends StatelessWidget {
               controller: controller,
               onSubmitted: onSearch,
               decoration: const InputDecoration(
+                labelStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
                 labelText: 'Buscar personaje',
                 border: OutlineInputBorder(),
               ),
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.search),
+            icon: const Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
             onPressed: () {
               final query = controller.text.trim();
               if (query.isNotEmpty) {
@@ -38,7 +46,10 @@ class SearchBar extends StatelessWidget {
             },
           ),
           IconButton(
-            icon: const Icon(Icons.cancel),
+            icon: const Icon(
+              Icons.cancel,
+              color: Colors.white,
+            ),
             onPressed: () {
               controller.clear(); // Limpia el campo de texto
               onCancel(); // Llama a la función de cancelación

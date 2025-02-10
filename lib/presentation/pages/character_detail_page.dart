@@ -31,8 +31,10 @@ class _CharacterDetailPageState extends State<CharacterDetailPage> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.black87,
       appBar: AppBar(
-        title: Text(widget.character!.name),
+        backgroundColor: Colors.black87,
+        iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           BlocBuilder<FavoriteBloc, FavoriteState>(
             builder: (context, state) {
@@ -61,10 +63,38 @@ class _CharacterDetailPageState extends State<CharacterDetailPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.network(widget.character!.image),
+            Container(
+              width: 400,
+              height: 400,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: NetworkImage(widget.character!.image),
+                  )),
+            ),
             const SizedBox(height: 16),
-            Text('Especie: ${widget.character!.species}'),
-            Text('Estado: ${widget.character!.status}'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Especie: ${widget.character!.species}',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Text(
+                  'Estado: ${widget.character!.status}',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
