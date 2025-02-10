@@ -1,3 +1,4 @@
+import 'package:digital_test/presentation/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import '../../domain/entities/character.dart';
 import '../../domain/entities/episode.dart';
@@ -12,7 +13,8 @@ import '../pages/episode_detail_page.dart';
 
 class AppRoutes {
   // Nombres de las rutas
-  static const String home = '/';
+  static const String splash = '/';
+  static const String home = '/home';
   static const String characters = '/characters';
   static const String characterDetail = '/character_detail';
   static const String locations = '/locations';
@@ -25,6 +27,7 @@ class AppRoutes {
       get routes {
     return {
       home: (context, _) => const HomePage(),
+      splash: (context, arguments) => const SplashScreen(),
       characters: (context, _) => const CharacterListPage(),
       characterDetail: (context, arguments) {
         final character = arguments as Character?;
