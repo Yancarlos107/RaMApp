@@ -34,9 +34,12 @@ class AppRoutes {
         return CharacterDetailPage(character: character);
       },
       locations: (context, _) => const LocationListPage(),
-      locationDetail: (context, arguments) => LocationDetailPage(
-            location: ModalRoute.of(context)!.settings.arguments as Location,
-          ),
+      locationDetail: (context, arguments) {
+        final location = arguments as Location?;
+        return LocationDetailPage(
+          location: location,
+        );
+      },
       episodes: (context, _) => const EpisodeListPage(),
       episodeDetail: (context, arguments) => EpisodeDetailPage(
             episode: arguments as Episode,

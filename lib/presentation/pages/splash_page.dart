@@ -17,13 +17,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Ocultar la barra de estado y la barra de navegación
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-
-    // Navegar a la pantalla Home después de 2 segundos
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => const HomePage()));
+      navigateToHome(context);
     });
   }
 
@@ -47,4 +43,18 @@ class _SplashScreenState extends State<SplashScreen> {
         overlays: SystemUiOverlay.values);
     super.dispose();
   }
+}
+
+void navigateToHome(BuildContext context) async {
+  // Precarga todas las imágenes necesarias
+  await precacheImage(const AssetImage('assets/portal.jpg'), context);
+  await precacheImage(const AssetImage('assets/character.png'), context);
+  await precacheImage(const AssetImage('assets/location.png'), context);
+  await precacheImage(const AssetImage('assets/episodes.jpeg'), context);
+
+  // Una vez cargadas, navega a la pantalla principal
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(builder: (context) => const HomePage()),
+  );
 }

@@ -18,7 +18,7 @@ class CharacterListPage extends StatefulWidget {
 class _CharacterListPageState extends State<CharacterListPage> {
   final ScrollController _scrollController = ScrollController();
   int _currentPage = 1;
-  bool _isSearching = false; // Indica si estamos en modo búsqueda
+  bool _isSearching = false;
 
   @override
   void initState() {
@@ -70,21 +70,20 @@ class _CharacterListPageState extends State<CharacterListPage> {
       ),
       body: Column(
         children: [
-          // SearchBar
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: searchbar.SearchBar(
               onSearch: (query) {
                 setState(() {
-                  _isSearching = true; // Activar modo búsqueda
-                  _currentPage = 1; // Reiniciar la paginación
+                  _isSearching = true;
+                  _currentPage = 1;
                 });
                 context.read<CharacterBloc>().add(SearchCharacter(query));
               },
               onCancel: () {
                 setState(() {
-                  _isSearching = false; // Desactivar modo búsqueda
-                  _currentPage = 1; // Reiniciar la paginación
+                  _isSearching = false;
+                  _currentPage = 1;
                 });
                 context
                     .read<CharacterBloc>()
@@ -92,7 +91,6 @@ class _CharacterListPageState extends State<CharacterListPage> {
               },
             ),
           ),
-          // Lista de personajes
           Expanded(
             child: BlocBuilder<CharacterBloc, CharacterState>(
               builder: (context, state) {

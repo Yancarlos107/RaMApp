@@ -11,7 +11,17 @@ class LocationRepositoryImpl implements LocationRepository {
   @override
   Future<List<Location>> getLocations({int page = 1}) async {
     try {
-      return await remoteDataSource.getLocations(page: page);
+      final response = await remoteDataSource.getLocations(page: page);
+
+      return response
+          .map((model) => Location(
+                id: model.id,
+                name: model.name,
+                type: model.type,
+                dimension: model.dimension,
+                residents: model.residents,
+              ))
+          .toList();
     } catch (e) {
       throw ServerException("Error al obtener ubicaciones.");
     }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../domain/entities/location.dart';
 
 class LocationDetailPage extends StatelessWidget {
-  final Location location;
+  final Location? location;
 
   const LocationDetailPage({super.key, required this.location});
 
@@ -10,7 +10,7 @@ class LocationDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(location.name),
+        title: Text(location!.name),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -18,13 +18,18 @@ class LocationDetailPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Nombre: ${location.name}',
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              'Nombre: ${location!.name}',
+              style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
             const SizedBox(height: 8),
-            Text('Tipo: ${location.type}'),
+            Text(
+              'Tipo: ${location!.type}',
+            ),
             const SizedBox(height: 8),
-            Text('Dimensión: ${location.dimension}'),
+            Text('Dimensión: ${location!.dimension}'),
             const SizedBox(height: 16),
             const Text(
               'Residentes:',
@@ -32,11 +37,11 @@ class LocationDetailPage extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: location.residents.length,
+                itemCount: location!.residents.length,
                 itemBuilder: (context, index) {
                   return ListTile(
                     title: Text('Residente ${index + 1}'),
-                    subtitle: Text(location.residents[index]),
+                    subtitle: Text(location!.residents[index]),
                   );
                 },
               ),
